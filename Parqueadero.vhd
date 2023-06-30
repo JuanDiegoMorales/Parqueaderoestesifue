@@ -33,7 +33,7 @@ architecture Behavioral of Parqueadero is
      
     component freq_divider
         port (clk : in std_logic;
-              out1, out2 : buffer std_logic);
+              out1, out2 : out std_logic);
     end component;
 	 
 	 component profuente is
@@ -126,7 +126,7 @@ begin
     -- Control de los LEDs y displays de 7 segmentos
     process (clock)
     begin
-        if clock = '0' then 
+        if clock = '1' then 
             if estado_acceso1 = Ingreso_Aceptado then
                 Red_LED <= '0';
                 Green_LED <= '1';
@@ -138,7 +138,7 @@ begin
                 Green_LED <= '0';
             end if;
 
-            Segments1 <= (others => '0'); -- Coloca aquí la lógica para mostrar los segmentos del cronómetro
+            Segments1 <= (others => '0'); 
             Segments10 <= (others => '0');
         end if;
     end process;
